@@ -1,0 +1,1 @@
+Invoke-Expression "python dbsite\manage.py $args"

@@ -17,3 +17,9 @@ if (!($packages -like "*matplotlib*"))
     python -m pip install matplotlib
 }
 
+if (!($packages -like "*numpy*"))
+{
+    python -m pip install numpy
+}
+
+Set-Alias -Name mng -Value .\mng

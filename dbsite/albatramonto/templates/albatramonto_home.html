@@ -1,11 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Alba e tramonto{% endblock title %}
 
 {% block css %}
 
 body {
-    background-color: #FFFF00;
+    background-color: #FFFFFF;
+}
+
+table, tr, td, th {
+    border: 1px solid black;
 }
 
 {% endblock css %}
@@ -14,13 +19,27 @@ body {
 <p>Home alba e tramonto</p>
 
 <form>
-    <input type="date", name="datainizio">
+    <input type="date", name="data-inizio">
+    <input type="date", name="data-fine">
     <input type="submit">
 </form>
 
-<ul>
+<img src="{% static 'graph.png' %}" alt="Grafico">
+
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Ora Alba</th>
+        <th>Ora Tramonto</th>
+        <th>Ora legale</th>
+    </tr>
     {% for dato in dati %}
-    <li>{{ dato }}</li>
+    <tr>
+        <td>{{ dato.data|date:"d/m/Y" }}</td>
+        <td>{{ dato.ora_alba|date:"H:i" }}</td>
+        <td>{{ dato.ora_tramonto|date:"H:i" }}</td>
+        <td>{% if dato.ora_legale %}Sì{% else %}No{% endif %}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock body %}
