@@ -14,6 +14,6 @@ if (!($packages -like "*django*"))
 
 if (!($packages -like "*matplotlib*"))
 {
-    python -m pip install django
+    python -m pip install matplotlib
 }
 
