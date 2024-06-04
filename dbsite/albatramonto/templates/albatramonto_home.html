@@ -2,8 +2,21 @@
 
 {% block title %}Alba e tramonto{% endblock title %}
 
+{% block css %}
+
+body {
+    background-color: #FFFF00;
+}
+
+{% endblock css %}
+
 {% block body %}
 <p>Home alba e tramonto</p>
+
+<form>
+    <input type="date", name="datainizio">
+    <input type="submit">
+</form>
 
 <ul>
     {% for dato in dati %}
