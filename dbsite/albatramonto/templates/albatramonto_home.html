@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Alba e tramonto{% endblock title %}
+
+{% block body %}
+<p>Home alba e tramonto</p>
+
+<ul>
+    {% for dato in dati %}
+    <li>{{ dato }}</li>
+    {% endfor %}
+</ul>
+{% endblock body %}

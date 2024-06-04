@@ -1,0 +1,1 @@
+py dbsite\manage.py %*
