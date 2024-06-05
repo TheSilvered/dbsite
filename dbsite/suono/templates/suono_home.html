@@ -4,20 +4,22 @@
 {% block title %}Suono ARPAV{% endblock title %}
 
 {% block css %}
-
-table, tr, td, th {
-    border: 1px solid black;
-}
-
 {% endblock css %}
 
 {% block body %}
-Home suono
+<h1 class="title">Suono</h1>
 
 <form>
-    <input type="time" name="ora-inizio" value="{{ ora_inizio }}">
-    <input type="time" name="ora-fine" value="{{ ora_fine }}">
-    <input type="submit">
+    <div>
+        <label for="ora-inizio">Ora inizio</label>
+        <input type="time" name="ora-inizio" value="{{ ora_inizio }}">
+    </div>
+
+    <div>
+        <label for="ora-fine">Ora fine</label>
+        <input type="time" name="ora-fine" value="{{ ora_fine }}">
+    </div>
+    <input type="submit" value="Aggiorna dati">
 </form>
 
 <img src={% static "suono_graph.png" %} alt="Grafico suono">

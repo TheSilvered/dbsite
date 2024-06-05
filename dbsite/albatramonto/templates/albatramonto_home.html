@@ -4,20 +4,27 @@
 {% block title %}Alba e tramonto{% endblock title %}
 
 {% block css %}
-
-table, tr, td, th {
-    border: 1px solid black;
-}
-
+<style>
+    table, tr, td, th {
+        border: 1px solid black;
+    }
+</style>
 {% endblock css %}
 
 {% block body %}
-<p>Home alba e tramonto</p>
+<h1 class="title">Alba e tramonto</h1>
 
 <form>
-    <input type="date" name="data-inizio" value="{{ data_inizio }}">
-    <input type="date" name="data-fine" value="{{ data_fine }}">
-    <input type="submit">
+    <div>
+        <label for="data-inizio">Data inizio</label>
+        <input type="date" name="data-inizio" value="{{ data_inizio }}">
+    </div>
+
+    <div>
+        <label for="data-fine">Data fine</label>
+        <input type="date" name="data-fine" value="{{ data_fine }}">
+    </div>
+    <input type="submit" value="Aggiorna dati">
 </form>
 
 <img src="{% static 'albatramonto_graph.png' %}" alt="Grafico">

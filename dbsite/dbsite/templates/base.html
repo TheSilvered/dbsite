@@ -3,65 +3,87 @@
 <head>
     <title>{% block title %}{% endblock title %}</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        :root {
+            --primary: #276fe3;
+            --primary-washed: #c4d8f8;
+            --radius: 20px;
+        }
+
         body {
-            background-color: #f0f8ff;
-            font-family: 'Arial', sans-serif;
-            color: #333;
+            background-color: #f0f4f8;
+            font-family: 'Inter', 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
         }
 
         .navbar {
-            display: block;
-            background-color: #40a6ff;
-            margin: 0;
-            padding: 1.5em;
-            display: flex;
-            list-style-type: none;
-            justify-content: space-around;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            background-color: var(--primary);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .navbar > li > a {
-            background-color: #f0f8ff;
-            padding: 1em 3em;
-            border-radius: 8px;
+        .navbar a {
+            color: white;
             text-decoration: none;
-            color: black;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 0 15px;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: var(--primary-washed);
         }
 
         .container {
-            max-width: 90vw;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 30px;
+            padding: 30px;
+            width: calc(100% - 120px);
             background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 50px;
+            border-radius: var(--radius);
+            place-items: center;
         }
 
-        footer {
+        .title {
+            font-size: 3em;
+            color: var(--primary);
+            margin: 0;
+            display: block;
             text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #aaa;
         }
 
-        {% block css %}{% endblock css %}
+        form > * {
+            margin: 5px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, tr, td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+
+        td {
+            text-align: right;
+        }
     </style>
+    {% block css %}{% endblock css %}
+
 </head>
 <body>
-    <ul class="navbar">
-        <li><a href="{% url 'homepage:home' %}">Home</a></li>
-        <li><a href="{% url 'albatramonto:home' %}">Alba e Tramonto</a></li>
-        <li><a href="{% url 'suono:home' %}">Suono ARPAV</a></li>
-    </ul>
+    <div class="navbar">
+        <a href="{% url 'homepage:home' %}">Home</a>
+        <a href="{% url 'albatramonto:home' %}">Alba e Tramonto</a>
+        <a href="{% url 'suono:home' %}">Suono ARPAV</a>
+    </div>
     <div class="container">
     {% block body %}{% endblock body %}
     </div>
-    <footer>
-        &copy; 2024 Your Website. All rights reserved.
-    </footer>
 </body>
 </html>
