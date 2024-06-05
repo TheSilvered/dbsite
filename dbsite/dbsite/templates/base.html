@@ -3,15 +3,65 @@
 <head>
     <title>{% block title %}{% endblock title %}</title>
     <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: block;
+            background-color: #40a6ff;
+            margin: 0;
+            padding: 1.5em;
+            display: flex;
+            list-style-type: none;
+            justify-content: space-around;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar > li > a {
+            background-color: #f0f8ff;
+            padding: 1em 3em;
+            border-radius: 8px;
+            text-decoration: none;
+            color: black;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 90vw;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
         {% block css %}{% endblock css %}
     </style>
 </head>
 <body>
-    <ul>
+    <ul class="navbar">
         <li><a href="{% url 'homepage:home' %}">Home</a></li>
         <li><a href="{% url 'albatramonto:home' %}">Alba e Tramonto</a></li>
         <li><a href="{% url 'suono:home' %}">Suono ARPAV</a></li>
     </ul>
+    <div class="container">
     {% block body %}{% endblock body %}
+    </div>
+    <footer>
+        &copy; 2024 Your Website. All rights reserved.
+    </footer>
 </body>
 </html>

@@ -130,7 +130,8 @@ def aggiorna_immagine_grafico(dati):
     for i in range(0, 60 * 25, 60):
         y_labels.append(minutes_to_y_label(i))
 
-    ax.set_xticks(list(range(0, len(dates), 20)), labels=dates[::20], rotation=45)
+    date_step = max(int(len(dates) * 0.0547), 1)
+    ax.set_xticks(list(range(0, len(dates), date_step)), labels=dates[::date_step], rotation=45)
     ax.set_yticks(list(range(0, 60 * 25, 60)), labels=y_labels)
 
     plt.savefig("dbsite/albatramonto/static/albatramonto_graph.png")

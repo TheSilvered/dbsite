@@ -8,7 +8,8 @@ FREQUENZE = [
 
 
 class Suono(models.Model):
-    data_e_ora = models.DateTimeField(auto_now=False, auto_now_add=False)
+    data = models.DateField(auto_now=False, auto_now_add=False)
+    ora = models.TimeField(auto_now=False, auto_now_add=False)
     laeq = models.FloatField()
 
     @staticmethod
@@ -23,7 +24,7 @@ class Suono(models.Model):
             data, ora, laeq, *intensita = row.split()
             assert len(intensita) == len(FREQUENZE)
             print(f"Creazione suono {i + 1}/{len(rows)}")
-            suono = Suono.objects.create(data_e_ora=f"{data} {ora}", laeq=float(laeq))
+            suono = Suono.objects.create(data=data, ora=ora, laeq=float(laeq))
             for intens, freq in zip(intensita, FREQUENZE):
                 Intensita.objects.create(frequenza=float(freq), intensita=float(intens), suono=suono)
 

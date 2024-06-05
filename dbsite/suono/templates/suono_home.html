@@ -3,8 +3,37 @@
 
 {% block title %}Suono ARPAV{% endblock title %}
 
+{% block css %}
+
+table, tr, td, th {
+    border: 1px solid black;
+}
+
+{% endblock css %}
+
 {% block body %}
 Home suono
 
+<form>
+    <input type="time" name="ora-inizio" value="{{ ora_inizio }}">
+    <input type="time" name="ora-fine" value="{{ ora_fine }}">
+    <input type="submit">
+</form>
+
 <img src={% static "suono_graph.png" %} alt="Grafico suono">
+
+<table>
+    <tr>
+        <th>Data</th>
+        <th>Ora</th>
+        <th>LAeq (dB)</th>
+    </tr>
+    {% for dato in dati %}
+    <tr>
+        <td>{{ dato.data|date:"d/m/Y" }}</td>
+        <td>{{ dato.ora|date:"H:i" }}</td>
+        <td>{{ dato.laeq }}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock body %}
