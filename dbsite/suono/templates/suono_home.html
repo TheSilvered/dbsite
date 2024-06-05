@@ -1,7 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Suono ARPAV{% endblock title %}
 
 {% block body %}
 Home suono
+
+<img src={% static "suono_graph.png" %} alt="Grafico suono">
 {% endblock body %}
