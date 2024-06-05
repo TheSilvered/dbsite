@@ -19,12 +19,12 @@ table, tr, td, th {
 <p>Home alba e tramonto</p>
 
 <form>
-    <input type="date", name="data-inizio">
-    <input type="date", name="data-fine">
+    <input type="date", name="data-inizio" value="{{ data_inizio }}">
+    <input type="date", name="data-fine" value="{{ data_fine }}">
     <input type="submit">
 </form>
 
-<img src="{% static 'graph.png' %}" alt="Grafico">
+<img src="{% static 'albatramonto_graph.png' %}" alt="Grafico">
 
 <table>
     <tr>

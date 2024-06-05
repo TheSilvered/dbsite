@@ -2,25 +2,34 @@ from django.shortcuts import render
 from .models import OreLuce
 
 import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 
 import re
+
+matplotlib.use('agg')
 
 def albatramonto_home(request):
     query = 'SELECT * FROM albatramonto_oreluce'
 
     condizione = ""
+    data_inizio = None
+    data_fine = None
 
     if "data-inizio" in request.GET:
         data_inizio = request.GET["data-inizio"]
         if controlla_data(data_inizio):
             condizione += f'data >= "{data_inizio}"'
+        else:
+            data_inizio = None
     if "data-fine" in request.GET:
         data_fine = request.GET["data-fine"]
         if controlla_data(data_fine):
             if condizione:
                 condizione += " AND "
             condizione += f'data <= "{data_fine}"'
+        else:
+            data_fine = None
 
     if condizione:
         query += " WHERE " + condizione
@@ -28,7 +37,29 @@ def albatramonto_home(request):
     dati = OreLuce.objects.raw(query)
     aggiorna_immagine_grafico(dati)
 
-    return render(request, 'albatramonto_home.html', {"dati": dati})
+    if data_inizio is not None:
+        pass
+    elif len(dati) != 0:
+        data_inizio = min([giorno.data for giorno in dati]).strftime("%Y-%m-%d")
+    else:
+        data_inizio = ""
+
+    if data_fine is not None:
+        pass
+    elif len(dati) != 0:
+        data_fine = max([giorno.data for giorno in dati]).strftime("%Y-%m-%d")
+    else:
+        data_fine = ""
+
+    return render(
+        request,
+        'albatramonto_home.html',
+        {
+            "dati": dati,
+            "data_inizio": data_inizio,
+            "data_fine": data_fine,
+        }
+    )
 
 
 def controlla_data(data):
@@ -102,4 +133,4 @@ def aggiorna_immagine_grafico(dati):
     ax.set_xticks(list(range(0, len(dates), 20)), labels=dates[::20], rotation=45)
     ax.set_yticks(list(range(0, 60 * 25, 60)), labels=y_labels)
 
-    plt.savefig("dbsite/albatramonto/static/graph.png")
+    plt.savefig("dbsite/albatramonto/static/albatramonto_graph.png")
