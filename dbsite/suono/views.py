@@ -80,7 +80,6 @@ def aggiorna_immagine_grafico(suoni):
         intensita = list(intensita)
         intensita.sort(key=lambda x: x.frequenza)
         if i % time_step == 0:
-            print("hi")
             ore.append(intensita[0].suono.ora.strftime("%H:%M:%S:%f")[:-3])
         intensita = [x.intensita for x in intensita]
         griglia_intensita.append(intensita)
